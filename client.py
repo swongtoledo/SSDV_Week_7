@@ -13,17 +13,18 @@ client.connect(address)
 
 ##gnerate key
 key = RSA.generate(2048)
-privateKey = key.exportKey()
-file1 = open('keyfile.pem', 'wb')
-file1.write(privateKey)
-file1.close()
+private_key = key.export_key()
+file_out = open("private.pem", "wb")
+file_out.write(private_key)
 
+public_key = key.publickey().export_key()
+file_out = open("receiver.pem", "wb")
+file_out.write(public_key)
 
 
 
 def communicate(data):
     
-
     file_out = open("encrypted_data.bin", "wb")
 
     recipient_key = RSA.import_key(open("receiver.pem").read())
