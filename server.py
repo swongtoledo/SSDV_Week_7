@@ -15,9 +15,13 @@ print ("start listening",ip,port)
 client,addr = server.accept()
 print ("Got a connection from", addr[0], addr[1])
 
+##Read the key
+f = open('receiver.pem', 'rb')
+key = RSA.importKey(f.read())
 
 
-while True: 
+## if key exists
+if key: 
     data = client.recv(1024)
     file_in = open("encrypted_data.bin", "rb")
 
@@ -34,7 +38,7 @@ while True:
     cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
     data = cipher_aes.decrypt_and_verify(ciphertext, tag)
     print(data.decode("utf-8"))
-    break
+
 
     
 

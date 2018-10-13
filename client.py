@@ -11,9 +11,18 @@ address = (ip,port)
 
 client.connect(address)
 
+##gnerate key
+key = RSA.generate(2048)
+privateKey = key.exportKey()
+file1 = open('keyfile.pem', 'wb')
+file1.write(privateKey)
+file1.close()
+
+
 
 
 def communicate(data):
+    
 
     file_out = open("encrypted_data.bin", "wb")
 
@@ -28,8 +37,6 @@ def communicate(data):
     cipher_aes = AES.new(session_key, AES.MODE_EAX)
     ciphertext, tag = cipher_aes.encrypt_and_digest(data)
     [ file_out.write(x) for x in (enc_session_key, cipher_aes.nonce, tag, ciphertext) ]
-    #client.send(data)
-    #print (client.recv(1024))
     return
 
 
