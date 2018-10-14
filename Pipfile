@@ -8,6 +8,7 @@ requests = "*"
 "math123" = "*"
 pycryptodome = "*"
 crypto = "*"
+pycryptodomex = "*"
 
 [dev-packages]
 
