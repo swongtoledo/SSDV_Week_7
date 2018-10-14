@@ -39,6 +39,10 @@ if key:
     data = cipher_aes.decrypt_and_verify(ciphertext, tag)
     print(data.decode("utf-8"))
 
+else:
+    client.send(b'goodbye')
+
+
 
     
 
